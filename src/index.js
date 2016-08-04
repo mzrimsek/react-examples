@@ -6,8 +6,6 @@ import App from 'components/app';
 
 const routes = (
   <Route handler={App} path="/">
-    <DefaultRoute handler={} />
-    <Route path="" handler={} />
   </Route>
 );
 
