@@ -1,38 +1,15 @@
 import React, {Component} from 'react';
 import {RouteHandler} from 'react-router';
 
+import Header from 'components/layout/header';
+import Footer from 'components/layout/footer';
+
 export default class App extends Component {
-  renderHeader(){
-    return(
-      <div className="hero is-fullheight is-primary is-bold">
-        <div className="hero-body">
-          <div className="container">
-            <h1 className="title is-1">react-examples</h1>
-            <h2 className="subtitle is-3">A Collection of React Snippets</h2>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  renderFooter(){
-    return(
-      <footer className="footer">
-        <div className="container is-pulled-right">
-          <a className="icon" href="github.com/mzrimsek/react-examples/" target="_blank">
-            <i className="fa fa-github"></i>
-          </a>
-          <a className="icon" href="zrimsek.com/" target="_blank">
-            <i className="fa fa-external-link"></i>
-          </a>
-        </div>
-      </footer>
-    );
-  }
   render() {
     return (
       <div className="app">
         <div className="wrapper">
-          {this.renderHeader()}
+          <Header />
           <section className="section">
             <div className="container">
               <div className="heading">
@@ -43,15 +20,13 @@ export default class App extends Component {
               </div>
               <div className="columns">
                 <div className="column is-half">
+                  <h1 className="title is-3">Code</h1>
                   <div className="box">
-                    <h1 className="title is-3">Code</h1>
-                    <pre>
-                      <code>
-                        export default class Example extends Component{
+                    <code>
+                      export default class Example extends Component{
 
-                        }
-                      </code>
-                    </pre>
+                      }
+                    </code>
                   </div>
                 </div>
                 <div className="column is-half">
@@ -66,7 +41,7 @@ export default class App extends Component {
           </section>
         </div>
         <RouteHandler></RouteHandler>
-        {this.renderFooter()}
+        <Footer />
       </div>
     );
   }
