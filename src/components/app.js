@@ -22,9 +22,6 @@ export default class App extends Component {
         <Snippet name="ajax-select" description="Update options on one select based on the selected option of another." githubUrl={this.state.githubUrl}>
           <AjaxSelect />
         </Snippet>
-        <Snippet name="loading-indicator" description="Load data in children as needed and show loading indicator as necessary." githubUrl={this.state.githubUrl}>
-          <LoadingIndicator />
-        </Snippet>
         <RouteHandler></RouteHandler>
         <Footer githubUrl={this.state.githubUrl} />
       </div>
