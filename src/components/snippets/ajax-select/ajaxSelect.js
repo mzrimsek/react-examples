@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import PrimarySelect from './primarySelect';
+import SelectWrapper from './selectWrapper';
 
 export default class AjaxSelect extends Component{
   constructor(){
     super();
     this.state = {
       primarySelectData: this.getPrimarySelectData(),
-      secondarySelectData: {}
+      secondarySelectData: [],
+      selectedItem: {}
     };
   }
   getPrimarySelectData(){
@@ -26,12 +27,17 @@ export default class AjaxSelect extends Component{
       .then(({data}) => this.setState({secondarySelectData: data}))
       .catch((err) => console.error(err));
   }
+  updateSelectedItem(event){
+    let value = event.target.value;
+    this.setState({
+      selectedItem: value
+    });
+  }
   render(){
     return(
       <div className="ajax-selects">
-        <PrimarySelect label="Pokemon Generation" data={this.state.primarySelectData} getDataFunction={this.getSecondarySelectData} />
-        <label>Pokemon</label>
-        <select></select>
+        <SelectWrapper label="Pokemon Generation" data={this.state.primarySelectData} onChange={this.getSecondarySelectData} />
+        <SelectWrapper label="Pokemon" data={this.state.secondarySelectData} onChange={this.updateSelectedItem} />
       </div>
     )
   }
