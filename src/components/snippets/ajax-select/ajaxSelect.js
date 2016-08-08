@@ -15,7 +15,6 @@ export default class AjaxSelect extends Component{
     };
 
     this.getSecondarySelectData = this.getSecondarySelectData.bind(this);
-    this.getSecondarySelectDataToDisplay = this.getSecondarySelectDataToDisplay.bind(this);
     this.updateSelectedItem = this.updateSelectedItem.bind(this);
     this.getSelectedItemData = this.getSelectedItemData.bind(this);
   }
@@ -41,14 +40,6 @@ export default class AjaxSelect extends Component{
         }.bind(this));
     }
   }
-  getSecondarySelectDataToDisplay(){
-    let data = this.state.secondarySelectData;
-    let namesOnly = ['Select Pokemon'];
-    for(var i = 0; i < data.length; i++){
-      namesOnly.push(data[i].name);
-    }
-    return namesOnly;
-  }
   updateSelectedItem(selectedItemIndex){
     this.setState({ selectedItemIndex: selectedItemIndex });
   }
@@ -68,20 +59,64 @@ export default class AjaxSelect extends Component{
         }.bind(this));
     }
   }
-  render(){
+  getSecondarySelectDataToDisplay(){
+    let data = this.state.secondarySelectData;
+    let namesOnly = ['Select Pokemon'];
+    for(var i = 0; i < data.length; i++){
+      namesOnly.push(data[i].name);
+    }
+    return namesOnly;
+  }
+  getButtonClass(){
+    return 'button is-primary' + (this.state.loadingSelectedItemData ? ' is-loading' : '');
+  }
+  shouldRenderOutputs(){
+    let selectedItemData = this.state.selectedItemData;
+    return !(Object.keys(selectedItemData).length === 0 && selectedItemData.constructor === Object);
+  }
+  renderInputs(){
     let secondarySelectData = this.getSecondarySelectDataToDisplay();
-    let buttonClass = 'button is-primary' + (this.state.loadingSelectedItemData ? ' is-loading' : '');
+    let buttonClass = this.getButtonClass();
+    return(
+      <div className="inputs">
+        <div className="control">
+          <SelectWrapper label="Pokemon Generation" data={this.state.primarySelectData} onChange={this.getSecondarySelectData} />
+        </div>
+        <div className="control">
+          <SelectWrapper label="Pokemon" data={secondarySelectData} onChange={this.updateSelectedItem} />
+        </div>
+        <div className="control">
+          <button className={buttonClass} onClick={this.getSelectedItemData}>Go</button>
+        </div>
+      </div>
+    );
+  }
+  renderOutputs(){
+    return (
+      <div className="outputs">
+        <div>
+          <span>Name:</span>{this.state.selectedItemData.name}
+        </div>
+        {this.state.selectedItemData.evolves_from_species &&
+          <div>
+            <span>Evolves From:</span>{this.state.selectedItemData.evolves_from_species.name}
+          </div>
+        }
+        <div>
+          <span>Number:</span>{this.state.selectedItemData.id}
+        </div>
+      </div>
+    )
+  }
+  render(){
     return(
       <div className="ajax-selects">
-        <div className="inputs">
-          <div className="control">
-            <SelectWrapper label="Pokemon Generation" data={this.state.primarySelectData} onChange={this.getSecondarySelectData} />
+        <div className="columns">
+          <div className="column is-half">
+            {this.renderInputs()}
           </div>
-          <div className="control">
-            <SelectWrapper label="Pokemon" data={secondarySelectData} onChange={this.updateSelectedItem} />
-          </div>
-          <div className="control">
-            <button className={buttonClass} onClick={this.getSelectedItemData}>Go</button>
+          <div className="column is-half">
+            {this.shouldRenderOutputs() && this.renderOutputs()}
           </div>
         </div>
       </div>
