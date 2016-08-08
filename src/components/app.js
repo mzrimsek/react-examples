@@ -6,7 +6,6 @@ import Footer from 'components/layout/footer';
 import Snippet from 'components/layout/snippet'
 
 import AjaxSelect from 'components/snippets/ajax-select/ajaxSelect';
-import LoadingIndicator from 'components/snippets/loading-indicator/loadingIndicator';
 
 export default class App extends Component {
   constructor(props){
