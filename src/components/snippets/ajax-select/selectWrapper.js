@@ -1,13 +1,5 @@
 import React, {Component} from 'react';
 
-class SelectOption extends Component{
-  render(){
-    return(
-      <option className="select-option" value={this.props.value}>{this.props.display}</option>
-    );
-  }
-}
-
 export default class SelectWrapper extends Component{
   constructor(props){
     super(props);
@@ -20,9 +12,9 @@ export default class SelectWrapper extends Component{
   render(){
     let selectOptionNodes = this.props.data.map(function(data, index){
       return(
-        <SelectOption key={index} display={data} value={index} />
+        <option className="select-option" key={index} value={index}>{data}</option>
       );
-    })
+    });
     return(
       <div className="select-wrapper">
         <label className="label">{this.props.label}:</label>
