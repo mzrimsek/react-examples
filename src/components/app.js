@@ -9,8 +9,8 @@ import AjaxSelect from 'components/snippets/ajax-select/ajaxSelect';
 import LoadingIndicator from 'components/snippets/loading-indicator/loadingIndicator';
 
 export default class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       githubUrl: 'https://github.com/mzrimsek/react-examples/'
     };

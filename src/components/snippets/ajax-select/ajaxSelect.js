@@ -4,28 +4,36 @@ import axios from 'axios';
 import SelectWrapper from './selectWrapper';
 
 export default class AjaxSelect extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       primarySelectData: this.getPrimarySelectData(),
       secondarySelectData: [],
       selectedItem: {}
     };
+    this.getSecondarySelectData = this.getSecondarySelectData.bind(this);
+    this.updateSelectedItem = this.updateSelectedItem.bind(this);
   }
   getPrimarySelectData(){
     let primarySelectDisplayBase = 'Generation ';
-    let primarySelectData = [];
+    let primarySelectData = ['Select Generation'];
     for(let i = 1; i <= 6; i++){
       primarySelectData.push(primarySelectDisplayBase + i);
     }
     return primarySelectData;
   }
-  getSecondarySelectData(event){
-    let value = event.target.value;
-    const secondaryDataBaseUrl = 'http://pokeapi.co/api/v2/generation/';
-    axios.get(secondaryDataBaseUrl + value)
-      .then(({data}) => this.setState({secondarySelectData: data}))
-      .catch((err) => console.error(err));
+  getSecondarySelectData(generationNumber){
+    console.log(generationNumber);
+    let dataUrl = 'http://pokeapi.co/api/v2/generation/' + generationNumber + '/';
+    axios.get(dataUrl)
+      .then(function(res){
+        this.setState({
+          secondarySelectData: res.data.pokemon_species
+        });
+      }.bind(this))
+      .catch(function(err){
+        console.error(err);
+      }.bind(this));
   }
   updateSelectedItem(event){
     let value = event.target.value;

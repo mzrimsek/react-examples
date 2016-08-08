@@ -9,10 +9,18 @@ class SelectOption extends Component{
 }
 
 export default class SelectWrapper extends Component{
+  constructor(props){
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+  onChange(e){
+    let value = e.target.value;
+    this.props.onChange(value);
+  }
   render(){
     let selectOptionNodes = this.props.data.map(function(data, index){
       return(
-        <SelectOption key={index} display={data} value={index+1} />
+        <SelectOption key={index} display={data} value={index} />
       );
     })
     return(
@@ -20,8 +28,7 @@ export default class SelectWrapper extends Component{
         <label className="label">{this.props.label}:</label>
           <p className="control">
             <span className="select">
-              <select onChange={this.props.onChange}>
-                <option value="0">Select Option</option>
+              <select onChange={this.onChange}>
                 {selectOptionNodes}
               </select>
             </span>
