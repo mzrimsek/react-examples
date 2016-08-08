@@ -17,10 +17,15 @@ export default class SelectWrapper extends Component{
     })
     return(
       <div className="select-wrapper">
-        <label>{this.props.label}:</label>
-        <select onChange={this.props.onChange}>
-          {selectOptionNodes}
-        </select>
+        <label className="label">{this.props.label}:</label>
+          <p className="control">
+            <span className="select">
+              <select onChange={this.props.onChange}>
+                <option value="0">Select Option</option>
+                {selectOptionNodes}
+              </select>
+            </span>
+          </p>
       </div>
     );
   }
