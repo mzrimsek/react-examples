@@ -1,8 +1,11 @@
-.select select{
-  text-transform: capitalize;
+/* FOOTER STYLES */
+.footer .built-with{
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
-.ajax-selects .outputs .name{
+/* AJAX SELECTS STYLES */
+.ajax-selects .inputs .select select, .ajax-selects .outputs .name{
   text-transform: capitalize;
 }
 .ajax-selects .outputs .data-label{

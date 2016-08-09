@@ -13,7 +13,7 @@ export default class Snippet extends Component{
           <div className="box">
             {this.props.children}
           </div>
-          <a className="button is-primary is-pulled-right" href={sourceUrl} target="_blank">View Source</a>
+          <a className="button is-primary is-pulled-right" href={sourceUrl} target="_blank">View Snippet Source</a>
         </div>
       </section>
     );
