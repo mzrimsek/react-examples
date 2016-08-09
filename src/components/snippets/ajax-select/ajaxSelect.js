@@ -116,7 +116,7 @@ export default class AjaxSelect extends Component{
     var imgUrls = this.getImageUrls();
     return (
       <div className="outputs">
-        <div className="level">
+        <div className="level has-text-centered">
             <div className="level-item">
               <img src={imgUrls[0]} />
             </div>
