@@ -4,7 +4,7 @@ export default class Footer extends Component{
   getBuiltWith(){
     return [
       { name: "Bulma", link: "http://bulma.io/" },
-      { name: "PokeApi", link: "http://pokeapi.co/" },
+      { name: "pokeapi", link: "http://pokeapi.co/" },
       { name: "Pokestadium", link: "http://www.pokestadium.com/" }
     ];
   }
