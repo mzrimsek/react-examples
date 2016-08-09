@@ -12,7 +12,7 @@ export default class Footer extends Component{
     let technologies = this.getBuiltWith();
     let builtWithNodes = technologies.map(function(technology, index){
       return(
-        <a className="built-with" href={technology.link} key={index}>{technology.name}</a>
+        <a className="built-with" href={technology.link} target="_blank" key={index}>{technology.name}</a>
       );
     });
     return(
