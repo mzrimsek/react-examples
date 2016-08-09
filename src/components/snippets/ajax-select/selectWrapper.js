@@ -15,12 +15,13 @@ export default class SelectWrapper extends Component{
         <option className="select-option" key={index} value={index}>{data}</option>
       );
     });
+    let selectClass = (this.props.loading) ? 'is-disabled' : '';
     return(
       <div className="select-wrapper">
         <label className="label">{this.props.label}:</label>
           <p className="control">
-            <span className="select">
-              <select onChange={this.onChange}>
+            <span className="select is-fullwidth">
+              <select className={selectClass} value={this.props.selected} onChange={this.onChange}>
                 {selectOptionNodes}
               </select>
             </span>

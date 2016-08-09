@@ -7,8 +7,8 @@ export default class AjaxSelect extends Component{
   constructor(props){
     super(props);
     this.state = {
-      primarySelectData: this.getPrimarySelectData(),
       secondarySelectData: [],
+      loadingSecondarySelectData: false,
       selectedItemIndex: 0,
       selectedItemData: {},
       loadingSelectedItemData: false
@@ -28,11 +28,17 @@ export default class AjaxSelect extends Component{
   }
   getSecondarySelectData(generationNumber){
     if(generationNumber !== 0){
+      this.setState({
+        selectedItemIndex: 0,
+        loadingSecondarySelectData: true
+      });
+
       let dataUrl = 'http://pokeapi.co/api/v2/generation/' + generationNumber + '/';
       axios.get(dataUrl)
         .then(function(res){
           this.setState({
-            secondarySelectData: res.data.pokemon_species
+            secondarySelectData: res.data.pokemon_species,
+            loadingSecondarySelectData: false
           });
         }.bind(this))
         .catch(function(err){
@@ -68,22 +74,31 @@ export default class AjaxSelect extends Component{
     return namesOnly;
   }
   getButtonClass(){
-    return 'button is-primary' + (this.state.loadingSelectedItemData ? ' is-loading' : '');
+    let extraClass = '';
+    if(this.state.loadingSelectedItemData){
+      extraClass = ' is-loading';
+    }
+    else if(this.state.loadingSecondarySelectData){
+      extraClass = ' is-disabled';
+    }
+    return 'button is-primary is-fullwidth' + extraClass;
   }
   shouldRenderOutputs(){
     let selectedItemData = this.state.selectedItemData;
     return !(Object.keys(selectedItemData).length === 0 && selectedItemData.constructor === Object);
   }
   renderInputs(){
+    let primarySelectData = this.getPrimarySelectData();
     let secondarySelectData = this.getSecondarySelectDataToDisplay();
     let buttonClass = this.getButtonClass();
     return(
       <div className="inputs">
         <div className="control">
-          <SelectWrapper label="Pokemon Generation" data={this.state.primarySelectData} onChange={this.getSecondarySelectData} />
+          <SelectWrapper label="Pokemon Generation" data={primarySelectData} onChange={this.getSecondarySelectData} />
         </div>
         <div className="control">
-          <SelectWrapper label="Pokemon" data={secondarySelectData} onChange={this.updateSelectedItem} />
+          <SelectWrapper label="Pokemon" data={secondarySelectData} selected={this.state.selectedItemIndex}
+            loading={this.state.loadingSecondarySelectData} onChange={this.updateSelectedItem} />
         </div>
         <div className="control">
           <button className={buttonClass} onClick={this.getSelectedItemData}>Go</button>
@@ -91,19 +106,32 @@ export default class AjaxSelect extends Component{
       </div>
     );
   }
+  getImageUrls(){
+    let fixedName = this.state.selectedItemData.name.replace('-', '');
+    let frontImage = 'http://www.pokestadium.com/sprites/xy/' + fixedName + '.gif';
+    let backImage = 'http://www.pokestadium.com/sprites/xy/back/' + fixedName + '.gif'
+    return [frontImage, backImage];
+  }
   renderOutputs(){
+    var imgUrls = this.getImageUrls();
     return (
       <div className="outputs">
-        <div>
-          <span>Name:</span>{this.state.selectedItemData.name}
+        <div className="level">
+            <div className="level-item">
+              <img src={imgUrls[0]} />
+            </div>
+            <div className="level-item">
+              <img src={imgUrls[1]} />
+            </div>
         </div>
-        {this.state.selectedItemData.evolves_from_species &&
-          <div>
-            <span>Evolves From:</span>{this.state.selectedItemData.evolves_from_species.name}
-          </div>
-        }
-        <div>
-          <span>Number:</span>{this.state.selectedItemData.id}
+        <div className="name">
+          <span className="data-label">Name: </span>{this.state.selectedItemData.name}
+        </div>
+        <div className="pokedex-number">
+          <span className="data-label">Pokedex #: </span>{this.state.selectedItemData.id}
+        </div>
+        <div className="description">
+          <span className="data-label">Description: </span>{this.state.selectedItemData.flavor_text_entries[1].flavor_text}
         </div>
       </div>
     )
