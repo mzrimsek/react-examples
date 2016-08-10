@@ -20,7 +20,7 @@ export default class Footer extends Component{
         <div className="container">
           <div className="content has-text-centered">
             <p>
-              react-examples by <a href={this.props.githubUrl} target="_blank">Mike Zrimsek</a>
+              react-examples by <a href="http://zrimsek.com" target="_blank">Mike Zrimsek</a>
             </p>
             <p>
               <a href={this.props.githubUrl} target="_blank">View Source <i className="fa fa-github"></i></a>
