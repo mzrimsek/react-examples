@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 import SelectWrapper from './selectWrapper';
+import PokemonInfo from './pokemonInfo';
 
 export default class AjaxSelect extends Component{
   constructor(props){
@@ -83,10 +84,6 @@ export default class AjaxSelect extends Component{
     }
     return 'button is-primary is-fullwidth' + extraClass;
   }
-  shouldRenderOutputs(){
-    let selectedItemData = this.state.selectedItemData;
-    return !(Object.keys(selectedItemData).length === 0 && selectedItemData.constructor === Object);
-  }
   renderInputs(){
     let primarySelectData = this.getPrimarySelectData();
     let secondarySelectData = this.getSecondarySelectDataToDisplay();
@@ -106,35 +103,9 @@ export default class AjaxSelect extends Component{
       </div>
     );
   }
-  getImageUrls(){
-    let fixedName = this.state.selectedItemData.name.replace('-', '');
-    let frontImage = 'http://www.pokestadium.com/sprites/xy/' + fixedName + '.gif';
-    let backImage = 'http://www.pokestadium.com/sprites/xy/back/' + fixedName + '.gif'
-    return [frontImage, backImage];
-  }
-  renderOutputs(){
-    var imgUrls = this.getImageUrls();
-    return (
-      <div className="outputs">
-        <div className="level has-text-centered">
-            <div className="level-item">
-              <img src={imgUrls[0]} />
-            </div>
-            <div className="level-item">
-              <img src={imgUrls[1]} />
-            </div>
-        </div>
-        <div className="name">
-          <span className="data-label">Name: </span>{this.state.selectedItemData.name}
-        </div>
-        <div className="pokedex-number">
-          <span className="data-label">Pokedex #: </span>{this.state.selectedItemData.id}
-        </div>
-        <div className="description">
-          <span className="data-label">Description: </span>{this.state.selectedItemData.flavor_text_entries[1].flavor_text}
-        </div>
-      </div>
-    )
+  shouldRenderOutputs(){
+    let selectedItemData = this.state.selectedItemData;
+    return !(Object.keys(selectedItemData).length === 0 && selectedItemData.constructor === Object);
   }
   render(){
     return(
@@ -144,7 +115,7 @@ export default class AjaxSelect extends Component{
             {this.renderInputs()}
           </div>
           <div className="column is-half">
-            {this.shouldRenderOutputs() && this.renderOutputs()}
+            { this.shouldRenderOutputs() && <PokemonInfo data={this.state.selectedItemData} /> }
           </div>
         </div>
       </div>
