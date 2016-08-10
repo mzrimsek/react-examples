@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 import SelectWrapper from './selectWrapper';
-import PokemonInfo from './pokemonInfo';
+import Outputs from './outputs';
 
 export default class AjaxSelect extends Component{
   constructor(props){
@@ -53,6 +53,7 @@ export default class AjaxSelect extends Component{
   getSelectedItemData(){
     if(this.state.selectedItemIndex !== 0){
       this.setState({ loadingSelectedItemData: true });
+
       let selectedItem = this.state.secondarySelectData[this.state.selectedItemIndex-1];
       axios.get(selectedItem.url)
         .then(function(res){
@@ -67,11 +68,10 @@ export default class AjaxSelect extends Component{
     }
   }
   getSecondarySelectDataToDisplay(){
-    let data = this.state.secondarySelectData;
     let namesOnly = ['Select Pokemon'];
-    for(var i = 0; i < data.length; i++){
-      namesOnly.push(data[i].name);
-    }
+    this.state.secondarySelectData.forEach(function(pokemon){
+      namesOnly.push(pokemon.name);
+    })
     return namesOnly;
   }
   getButtonClass(){
@@ -115,7 +115,7 @@ export default class AjaxSelect extends Component{
             {this.renderInputs()}
           </div>
           <div className="column is-half">
-            { this.shouldRenderOutputs() && <PokemonInfo data={this.state.selectedItemData} /> }
+            { this.shouldRenderOutputs() && <Outputs data={this.state.selectedItemData} /> }
           </div>
         </div>
       </div>

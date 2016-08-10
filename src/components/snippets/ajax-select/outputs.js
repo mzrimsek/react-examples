@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class PokemonInfo extends Component{
+export default class Outputs extends Component{
   getImageUrls(){
     let fixedName = this.props.data.name.replace('-', '');
     let frontImage = 'http://www.pokestadium.com/sprites/xy/' + fixedName + '.gif';
