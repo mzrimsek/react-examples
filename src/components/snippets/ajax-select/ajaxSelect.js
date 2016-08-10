@@ -16,7 +16,7 @@ export default class AjaxSelect extends Component{
     };
 
     this.getSecondarySelectData = this.getSecondarySelectData.bind(this);
-    this.updateSelectedItem = this.updateSelectedItem.bind(this);
+    this.updateSelectedItemIndex = this.updateSelectedItemIndex.bind(this);
     this.getSelectedItemData = this.getSelectedItemData.bind(this);
   }
   getPrimarySelectData(){
@@ -47,7 +47,7 @@ export default class AjaxSelect extends Component{
         }.bind(this));
     }
   }
-  updateSelectedItem(selectedItemIndex){
+  updateSelectedItemIndex(selectedItemIndex){
     this.setState({ selectedItemIndex: selectedItemIndex });
   }
   getSelectedItemData(){
@@ -90,12 +90,12 @@ export default class AjaxSelect extends Component{
     let buttonClass = this.getButtonClass();
     return(
       <div className="inputs">
-        <div className="control">
-          <SelectWrapper label="Pokemon Generation" data={primarySelectData} onChange={this.getSecondarySelectData} />
+        <div className="control primary-select">
+          <SelectWrapper label="Pokemon Generation" data={primarySelectData} handleChange={this.getSecondarySelectData} />
         </div>
-        <div className="control">
+        <div className="control secondary-select">
           <SelectWrapper label="Pokemon" data={secondarySelectData} selected={this.state.selectedItemIndex}
-            loading={this.state.loadingSecondarySelectData} onChange={this.updateSelectedItem} />
+            loading={this.state.loadingSecondarySelectData} handleChange={this.updateSelectedItemIndex} />
         </div>
         <div className="control">
           <button className={buttonClass} onClick={this.getSelectedItemData}>Go</button>

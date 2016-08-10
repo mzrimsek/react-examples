@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 export default class SelectWrapper extends Component{
   constructor(props){
     super(props);
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
-  onChange(e){
+  handleChange(e){
     let value = e.target.value;
-    this.props.onChange(value);
+    this.props.handleChange(value);
   }
   render(){
     let selectOptionNodes = this.props.data.map(function(data, index){
@@ -21,7 +21,7 @@ export default class SelectWrapper extends Component{
         <label className="label">{this.props.label}:</label>
           <p className="control">
             <span className="select is-fullwidth">
-              <select className={selectClass} value={this.props.selected} onChange={this.onChange}>
+              <select className={selectClass} value={this.props.selected} onChange={this.handleChange}>
                 {selectOptionNodes}
               </select>
             </span>
