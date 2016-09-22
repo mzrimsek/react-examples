@@ -10,7 +10,7 @@ export default class AjaxSelect extends Component{
     this.state = {
       secondarySelectData: [],
       loadingSecondarySelectData: false,
-      selectedItemIndex: 0,
+      selectedItemIndex: "0",
       selectedItemData: {},
       loadingSelectedItemData: false
     };
@@ -30,7 +30,7 @@ export default class AjaxSelect extends Component{
   getSecondarySelectData(generationNumber){
     if(generationNumber !== 0){
       this.setState({
-        selectedItemIndex: 0,
+        selectedItemIndex: "0",
         loadingSecondarySelectData: true
       });
 
@@ -79,7 +79,7 @@ export default class AjaxSelect extends Component{
     if(this.state.loadingSelectedItemData){
       extraClass = ' is-loading';
     }
-    else if(this.state.loadingSecondarySelectData){
+    else if(this.state.loadingSecondarySelectData || this.state.selectedItemIndex === "0"){
       extraClass = ' is-disabled';
     }
     return 'button is-primary is-fullwidth' + extraClass;
