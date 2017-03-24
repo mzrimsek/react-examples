@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {RouteHandler} from 'react-router';
 
-import Header from 'components/layout/header';
-import Footer from 'components/layout/footer';
-import Snippet from 'components/layout/snippet'
+import Header from './layout/header';
+import Footer from './layout/footer';
+import Snippet from './layout/snippet'
 
-import AjaxSelect from 'components/snippets/ajax-select/ajaxSelect';
+import AjaxSelect from './snippets/ajax-select/ajaxSelect';
 
 export default class App extends Component {
   constructor(props){
