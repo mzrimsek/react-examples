@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 
 export default class Snippet extends Component{
+  constructor(props){
+    super(props);
+    this.trackClick = this.trackClick.bind(this);
+  }
+  trackClick(){
+    ga('send', 'event', 'View Snippet Source', 'click', this.props.name);
+  }
   render(){
     const sourceUrl = this.props.githubUrl + "/tree/master/src/components/snippets/" + this.props.name;
     return(
@@ -13,7 +20,7 @@ export default class Snippet extends Component{
           <div className="box">
             {this.props.children}
           </div>
-          <a className="button is-primary is-pulled-right" href={sourceUrl} target="_blank">View Snippet Source</a>
+          <a className="button is-primary is-pulled-right" href={sourceUrl} target="_blank" onClick={this.trackClick}>View Snippet Source</a>
         </div>
       </section>
     );
