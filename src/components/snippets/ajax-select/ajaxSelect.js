@@ -75,11 +75,8 @@ export default class AjaxSelect extends Component{
     return namesOnly;
   }
   getButtonClass(){
-    let extraClass = '';
-    if(this.state.loadingSelectedItemData){
-      extraClass = ' is-loading';
-    }
-    return 'button is-primary is-fullwidth' + extraClass;
+    let extraClass = (this.state.loadingSelectedItemData) ? 'is-loading' : '';
+    return 'button is-primary is-fullwidth ' + extraClass;
   }
   getButtonDisabled(){
     return this.state.loadingSecondarySelectData || this.state.selectedItemIndex === "0";
