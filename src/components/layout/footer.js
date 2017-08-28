@@ -12,7 +12,8 @@ export default class Footer extends Component{
     return [
       { name: "Bulma", link: "http://bulma.io/" },
       { name: "pokeapi", link: "http://pokeapi.co/" },
-      { name: "Pokestadium", link: "http://www.pokestadium.com/" }
+      { name: "Pokestadium", link: "http://www.pokestadium.com/" },
+      { name: "Dog CEO", link: "https://dog.ceo/" }
     ];
   }
   render(){
