@@ -5,7 +5,7 @@ import DogButton from './dogButton';
 import DogImage from './dogImage';
 import DogSelect from './dogSelect';
 
-class RandomizedMultiselect extends Component {
+export default class RandomizedMultiselect extends Component {
   constructor(props) {
     super(props);
     this.state = {
