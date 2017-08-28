@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import DogButton from './dogButton';
 import DogImage from './dogImage';
 import DogSelect from './dogSelect';
 
@@ -63,11 +62,17 @@ export default class RandomizedMultiselect extends Component {
     }
     return (
       <div className="randomized-multiselect">
-        <div className="controls">
-          <DogSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
-          <DogButton handleClick={this.getImageForSelectedBreed}/>
+        <div className="columns">
+          <div className="column is-half">
+            <DogSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
+            <div className="control">
+              <button className="button is-primary is-fullwidth" onClick={this.getImageForSelectedBreed}>Another One!</button>
+            </div>
+          </div>
+          <div className="column is-half">
+            <DogImage data={this.state.imageUrl}/>
+          </div>
         </div>
-        <DogImage data={this.state.imageUrl}/>
       </div>
     );
   }
