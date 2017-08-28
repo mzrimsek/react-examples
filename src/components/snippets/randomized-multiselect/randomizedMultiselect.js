@@ -56,16 +56,20 @@ export default class RandomizedMultiselect extends Component {
     });
     this.getImageForBreed(breeds[breeds.length-1]);
   }
+  getButtonDisabled(){
+    return this.state.selectedBreeds.length === 0;
+  }
   render() {
     if(this.state.breeds.length === 0) {
       this.getDogBreeds();
     }
+    let isButtonDisabled = this.getButtonDisabled();
     return (
       <div className="randomized-multiselect">
         <div className="columns">
           <div className="column is-half">
             <DogSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
-            <a className="button is-primary is-fullwidth" onClick={this.getImageForSelectedBreed}>Another One!</a>
+            <a className="button is-primary is-fullwidth" onClick={this.getImageForSelectedBreed} disabled={isButtonDisabled}>Another One!</a>
           </div>
           <div className="column is-half">
             <DogImage data={this.state.imageUrl}/>
