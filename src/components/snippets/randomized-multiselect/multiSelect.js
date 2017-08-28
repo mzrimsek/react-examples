@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-export default class DogSelect extends Component {
+export default class MultiSelect extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -22,7 +22,7 @@ export default class DogSelect extends Component {
       );
     });
     return (
-      <div className="dogSelect">
+      <div className="multiSelect">
         <label className="label">Breed:</label>
         <div className="control">
           <div className="select is-multiple is-fullwidth">
