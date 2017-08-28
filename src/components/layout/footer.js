@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 
 export default class Footer extends Component{
+  constructor(props){
+    super(props);
+    this.trackClick = this.trackClick.bind(this);
+  }
+  trackClick(category){
+    ga('send', 'event', category, 'click', 'Footer');
+  }
   getBuiltWith(){
     return [
       { name: "Bulma", link: "http://bulma.io/" },
@@ -20,10 +27,10 @@ export default class Footer extends Component{
         <div className="container">
           <div className="content has-text-centered">
             <p>
-              react-examples by <a href="http://zrimsek.com" target="_blank">Mike Zrimsek</a>
+              react-examples by <a href="http://zrimsek.com" target="_blank" onClick={this.trackClick('View zrimsek.com')}>Mike Zrimsek</a>
             </p>
             <p>
-              <a href={this.props.githubUrl} target="_blank">View Source <i className="fa fa-github"></i></a>
+              <a href={this.props.githubUrl} target="_blank" onClick={this.trackClick('View Site Source')}>View Source <i className="fa fa-github"></i></a>
             </p>
             <p>
               Built With: {builtWithNodes}
