@@ -4,7 +4,7 @@
   margin-right: 3px;
 }
 
-/* AJAX SELECTS STYLES */
+/* AJAX SELECT STYLES */
 .ajax-select .inputs .select select, .ajax-select .outputs .name{
   text-transform: capitalize;
 }
@@ -12,3 +12,5 @@
   font-size: 100%;
   font-weight: bold;
 }
+
+/* RANDOMIZED MULTISELECT STYLES */
