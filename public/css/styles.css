@@ -22,7 +22,7 @@
 .randomized-multiselect .select select {
   text-transform: capitalize;
 }
-.randomized-multiselect .dogImage {
+.randomized-multiselect .output {
   display: flex;
   justify-content: center;
 }

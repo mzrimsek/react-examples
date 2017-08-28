@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import DogImage from './dogImage';
-import DogSelect from './dogSelect';
+import MultiSelect from './multiSelect';
 
 export default class RandomizedMultiselect extends Component {
   constructor(props) {
@@ -77,11 +76,13 @@ export default class RandomizedMultiselect extends Component {
       <div className="randomized-multiselect">
         <div className="columns">
           <div className="column is-half">
-            <DogSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
+            <MultiSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
             <a className={buttonClass} onClick={this.getImageForSelectedBreed} disabled={isButtonDisabled}>Go</a>
           </div>
           <div className="column is-half">
-            <DogImage data={this.state.imageUrl}/>
+            <div className="output">
+              <img src={this.state.imageUrl}/>
+            </div>
           </div>
         </div>
       </div>
