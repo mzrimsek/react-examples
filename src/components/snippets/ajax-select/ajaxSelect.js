@@ -79,27 +79,22 @@ export default class AjaxSelect extends Component{
     if(this.state.loadingSelectedItemData){
       extraClass = ' is-loading';
     }
-    else if(this.state.loadingSecondarySelectData || this.state.selectedItemIndex === "0"){
-      extraClass = ' is-disabled';
-    }
     return 'button is-primary is-fullwidth' + extraClass;
+  }
+  getButtonDisabled(){
+    return this.state.loadingSecondarySelectData || this.state.selectedItemIndex === "0";
   }
   renderInputs(){
     let primarySelectData = this.getPrimarySelectData();
     let secondarySelectData = this.getSecondarySelectDataToDisplay();
     let buttonClass = this.getButtonClass();
+    let isButtonDisabled = this.getButtonDisabled();
     return(
       <div className="inputs">
-        <div className="control primary-select">
-          <SelectWrapper label="Pokemon Generation" data={primarySelectData} handleChange={this.getSecondarySelectData} />
-        </div>
-        <div className="control secondary-select">
-          <SelectWrapper label="Pokemon" data={secondarySelectData} selected={this.state.selectedItemIndex}
+        <SelectWrapper label="Pokemon Generation" data={primarySelectData} handleChange={this.getSecondarySelectData} />
+        <SelectWrapper label="Pokemon" data={secondarySelectData} selected={this.state.selectedItemIndex}
             loading={this.state.loadingSecondarySelectData} handleChange={this.updateSelectedItemIndex} />
-        </div>
-        <div className="control">
-          <button className={buttonClass} onClick={this.getSelectedItemData}>Go</button>
-        </div>
+        <a className={buttonClass} onClick={this.getSelectedItemData} disabled={isButtonDisabled}>Go</a>
       </div>
     );
   }
@@ -109,13 +104,13 @@ export default class AjaxSelect extends Component{
   }
   render(){
     return(
-      <div className="ajax-selects">
+      <div className="ajax-select">
         <div className="columns">
           <div className="column is-half">
             {this.renderInputs()}
           </div>
           <div className="column is-half">
-            { this.shouldRenderOutputs() && <Outputs data={this.state.selectedItemData} /> }
+            {this.shouldRenderOutputs() && <Outputs data={this.state.selectedItemData} />}
           </div>
         </div>
       </div>

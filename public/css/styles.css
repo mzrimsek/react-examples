@@ -1,14 +1,28 @@
+/* GENERAL STYLES */
+.select {
+  margin-bottom: 10px;
+}
+
 /* FOOTER STYLES */
 .footer .built-with{
   margin-left: 3px;
   margin-right: 3px;
 }
 
-/* AJAX SELECTS STYLES */
-.ajax-selects .inputs .select select, .ajax-selects .outputs .name{
+/* AJAX SELECT STYLES */
+.ajax-select .inputs .select select, .ajax-select .outputs .name{
   text-transform: capitalize;
 }
-.ajax-selects .outputs .data-label{
+.ajax-select .outputs .data-label{
   font-size: 100%;
   font-weight: bold;
+}
+
+/* RANDOMIZED MULTISELECT STYLES */
+.randomized-multiselect .select select {
+  text-transform: capitalize;
+}
+.randomized-multiselect .dogImage {
+  display: flex;
+  justify-content: center;
 }
