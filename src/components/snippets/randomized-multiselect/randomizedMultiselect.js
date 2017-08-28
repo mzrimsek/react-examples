@@ -65,9 +65,7 @@ export default class RandomizedMultiselect extends Component {
         <div className="columns">
           <div className="column is-half">
             <DogSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
-            <div className="control">
-              <button className="button is-primary is-fullwidth" onClick={this.getImageForSelectedBreed}>Another One!</button>
-            </div>
+            <a className="button is-primary is-fullwidth" onClick={this.getImageForSelectedBreed}>Another One!</a>
           </div>
           <div className="column is-half">
             <DogImage data={this.state.imageUrl}/>

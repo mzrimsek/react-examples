@@ -1,3 +1,8 @@
+/* GENERAL STYLES */
+.select {
+  margin-bottom: 10px;
+}
+
 /* FOOTER STYLES */
 .footer .built-with{
   margin-left: 3px;
@@ -14,3 +19,6 @@
 }
 
 /* RANDOMIZED MULTISELECT STYLES */
+.randomized-multiselect .select select {
+  text-transform: capitalize;
+}
