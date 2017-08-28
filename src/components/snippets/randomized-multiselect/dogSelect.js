@@ -24,9 +24,13 @@ export default class DogSelect extends Component {
     return (
       <div className="dogSelect">
         <label>Breed:</label>
-        <select onChange={this.handleChange} multiple>
-          {dogOptions}
-        </select>
+        <p className="control">
+          <span className="select is-fullwidth">
+          <select onChange={this.handleChange} multiple>
+            {dogOptions}
+          </select>
+          </span>
+        </p>
       </div>
     );
   }
