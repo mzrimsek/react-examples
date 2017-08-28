@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import DogButton from './dogButton';
+import DogImage from './dogImage';
+import DogSelect from './dogSelect';
+
 class RandomizedMultiselect extends Component {
   constructor(props) {
     super(props);
