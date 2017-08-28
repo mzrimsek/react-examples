@@ -11,7 +11,7 @@ export default class SelectWrapper extends Component{
   }
   getSelectClass() {
     let selectClass = (this.props.loading) ? 'is-loading' : '';
-    return "select is-fullwidth " + selectClass;
+    return 'select is-fullwidth ' + selectClass;
   }
   render(){
     let selectOptionNodes = this.props.data.map(function(data, index){
