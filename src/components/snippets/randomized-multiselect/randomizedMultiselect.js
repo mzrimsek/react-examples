@@ -10,7 +10,8 @@ export default class RandomizedMultiselect extends Component {
     this.state = {
       breeds: [],
       selectedBreeds: [],
-      imageUrl: ""
+      imageUrl: "",
+      loadingSelectedItemData: false
     };
     this.getDogBreeds = this.getDogBreeds.bind(this);
     this.getImageForBreed = this.getImageForBreed.bind(this);
@@ -31,10 +32,13 @@ export default class RandomizedMultiselect extends Component {
   }
   getImageForBreed(breed) {
     let url = "https://dog.ceo/api/breed/" + breed + "/images/random";
+    this.setState({ loadingSelectedItemData: true });
+
     axios.get(url)
     .then(function(res) {
       this.setState({
-        imageUrl: res.data.message
+        imageUrl: res.data.message,
+        loadingSelectedItemData: false
       });
     }.bind(this))
     .catch(function(err) {
@@ -56,6 +60,10 @@ export default class RandomizedMultiselect extends Component {
     });
     this.getImageForBreed(breeds[breeds.length-1]);
   }
+  getButtonClass(){
+    let extraClass = (this.state.loadingSelectedItemData) ? 'is-loading' : '';
+    return 'button is-primary is-fullwidth ' + extraClass;
+  }
   getButtonDisabled(){
     return this.state.selectedBreeds.length === 0;
   }
@@ -63,13 +71,14 @@ export default class RandomizedMultiselect extends Component {
     if(this.state.breeds.length === 0) {
       this.getDogBreeds();
     }
+    let buttonClass = this.getButtonClass();
     let isButtonDisabled = this.getButtonDisabled();
     return (
       <div className="randomized-multiselect">
         <div className="columns">
           <div className="column is-half">
             <DogSelect data={this.state.breeds} handleChange={this.updateSelectedBreeds}/>
-            <a className="button is-primary is-fullwidth" onClick={this.getImageForSelectedBreed} disabled={isButtonDisabled}>Another One!</a>
+            <a className={buttonClass} onClick={this.getImageForSelectedBreed} disabled={isButtonDisabled}>Go</a>
           </div>
           <div className="column is-half">
             <DogImage data={this.state.imageUrl}/>
