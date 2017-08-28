@@ -19,13 +19,13 @@ export default class SelectWrapper extends Component{
     return(
       <div className="select-wrapper">
         <label className="label">{this.props.label}:</label>
-          <p className="control">
-            <span className="select is-fullwidth">
-              <select className={selectClass} value={this.props.selected} onChange={this.handleChange}>
-                {selectOptionNodes}
-              </select>
-            </span>
-          </p>
+        <p className="control">
+          <span className="select is-fullwidth">
+            <select className={selectClass} value={this.props.selected} onChange={this.handleChange}>
+              {selectOptionNodes}
+            </select>
+          </span>
+        </p>
       </div>
     );
   }

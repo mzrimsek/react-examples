@@ -115,7 +115,7 @@ export default class AjaxSelect extends Component{
             {this.renderInputs()}
           </div>
           <div className="column is-half">
-            { this.shouldRenderOutputs() && <Outputs data={this.state.selectedItemData} /> }
+            {this.shouldRenderOutputs() && <Outputs data={this.state.selectedItemData} />}
           </div>
         </div>
       </div>
