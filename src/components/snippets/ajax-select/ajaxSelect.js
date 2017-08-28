@@ -109,7 +109,7 @@ export default class AjaxSelect extends Component{
   }
   render(){
     return(
-      <div className="ajax-selects">
+      <div className="ajax-select">
         <div className="columns">
           <div className="column is-half">
             {this.renderInputs()}
