@@ -17,4 +17,4 @@ Made as much for the usage of others as for my own experimentation and practice.
 
 ## With Docker
 * `docker build -t mzrimsek/react-examples .`
-* `docker run -p 8000:8000 -d mzrimsek/react-examples`
+* `docker run -p 8000:3000 -d mzrimsek/react-examples`
