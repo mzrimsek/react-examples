@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  web:
+    image: ghcr.io/mzrimsek/react-examples:latest
+    container_name: react_examples
+    ports:
+      - ${HOST_PORT}:3000
+    restart: unless-stopped
